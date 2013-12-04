@@ -1,0 +1,21 @@
+-module(sample_app).
+
+-behaviour(application).
+
+%% Application callbacks
+-export([start/2, stop/1]).
+%% New export
+-export([new_export/0]).
+
+%% ===================================================================
+%% Application callbacks
+%% ===================================================================
+
+start(_StartType, _StartArgs) ->
+    sample_sup:start_link().
+
+stop(_State) ->
+    ok.
+
+new_export() ->
+    "New in Version 2".
