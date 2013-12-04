@@ -26,6 +26,7 @@ echo "Change version to 2 and generate release again..."
 cd ${WORK_DIR}
 cp src/sample.app.src sample.app.src.v1
 cp ${BASE_DIR}/sample.app.src.v2 src/sample.app.src
+cp ${BASE_DIR}/sample_app.erl.v2 src/sample_app.erl
 (diff -U 2 sample.app.src.v1 src/sample.app.src; true)
 ${REBAR} clean
 ${REBAR} compile
@@ -38,4 +39,14 @@ ${REBAR} generate
 echo "Generate appup and upgrade..."
 ${REBAR} generate-appups previous_release=sample_1
 ${REBAR} generate-upgrade previous_release=sample_1
-cp sample_2.tar.gz sample_1/releases/
+
+echo "Try to stop the node in case it is alive..."
+(${WORK_DIR}/rel/sample_1/bin/sample stop ; true)
+
+echo "Start erlang node with rel version 1..."
+cd ${BASE_DIR}
+${WORK_DIR}/rel/sample_1/bin/sample start
+
+epmd -names
+
+echo "Finished."
