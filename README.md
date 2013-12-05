@@ -32,11 +32,13 @@ with R16B02):
 ```
 
 A workaround is as follows:
-1. Unpack the relup archive, which is generated at Step 1, manually and
-   place `releases` and new applications to appropriate directories.
-2. Call `release_handler:set_unpacked("releases/sample_2.rel", [{sample, "2", "lib"}]).`
-   manually.
-3. Call `release_handler:install_release("2").`.
+
+1.  Unpack the relup archive, which is generated at Step 1, manually and
+    place `releases` and new applications to appropriate directories.
+2.  Call
+    `release_handler:set_unpacked("releases/sample_2.rel", [{sample, "2", "lib"}]).`
+    manually.
+3.  Call `release_handler:install_release("2").`.
 
 All these steps are executed by the script `upgrade.sh`.
 After upgrading, we can confirm that new version is working by calling
