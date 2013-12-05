@@ -31,16 +31,20 @@ with R16B02):
 {error,{enoent,"/tmp/slim-upgrade-sample/sample/rel/sample_1/releases/sample_2.rel"}}
 ```
 
-A workaround is as follows:
-1. Unpack the relup archive, which is generated at Step 1, manually and
-   place `releases` and new applications to appropriate directories.
-2. Call `release_handler:set_unpacked("releases/sample_2.rel", [{sample, "2", "lib"}]).`
-   manually.
-3. Call `release_handler:install_release("2").`.
+Steps for workaround is as follows:
+
+1.  Unpack the relup archive, which is generated at Step 1, manually and
+    place `releases` and new versions of applications to appropriate directories.
+2.  Call
+    `release_handler:set_unpacked("releases/sample_2.rel", [{sample, "2", "lib"}]).`
+    manually.
+3.  Call `release_handler:install_release("2").`.
 
 All these steps are executed by the script `upgrade.sh`.
 After upgrading, we can confirm that new version is working by calling
 `sample_app:new_export()` which is a new function in version 2.
+
+For full details, see `upgrade.sh`.
 
 ## Some observations on `release_handler:unpack_release/1`
 
